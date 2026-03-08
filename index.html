@@ -1,95 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Modern Shop</title>
+<title>Smart Sphere</title>
 
 <style>
+
 body{
-margin:0;
+background:#0b0f14;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 font-family:Arial;
-background:#111;
-color:white;
-text-align:center;
-}
-
-header{
-background:#000;
-padding:15px;
-font-size:24px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:20px;
 }
 
 .card{
-background:#1c1c1c;
-border-radius:10px;
+width:340px;
+height:220px;
+background:linear-gradient(90deg,#0f6d6d,#e8e8e8);
+border-radius:20px;
+position:relative;
 overflow:hidden;
-transition:0.3s;
+padding:20px;
+transition:0.5s;
 }
 
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px cyan;
+.card.active{
+height:380px;
 }
 
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
+.left{
+position:absolute;
+top:20px;
+left:20px;
+color:white;
 }
 
-.card h3{
-margin:10px;
+.left h1{
+margin:0;
+font-size:40px;
 }
 
-button{
-background:#00ffff;
-border:none;
-padding:8px 15px;
-margin-bottom:10px;
-border-radius:5px;
+.right{
+position:absolute;
+right:20px;
+top:20px;
+color:#004646;
+}
+
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
 cursor:pointer;
 }
+
+.center img{
+width:90px;
+transition:0.5s;
+filter:drop-shadow(0 0 15px cyan);
+}
+
+.card.active .center img{
+transform:scale(1.4) rotate(360deg);
+}
+
+.join{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+background:black;
+color:white;
+border-radius:10px;
+display:none;
+}
+
+.card.active .join{
+display:inline-block;
+}
+
+.members{
+position:absolute;
+right:20px;
+bottom:20px;
+background:white;
+color:#004646;
+padding:10px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.extra{
+margin-top:200px;
+text-align:center;
+display:none;
+}
+
+.card.active .extra{
+display:block;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<header>My Modern Store</header>
+<div class="card" id="card">
 
-<div class="grid">
-
-<div class="card">
-<img src="https://picsum.photos/300?1">
-<h3>Smart Phone</h3>
-<button>Buy</button>
+<div class="left">
+<p>Smart/</p>
+<h1>150+</h1>
+<small>active thinkers inside</small>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/300?2">
-<h3>Headphone</h3>
-<button>Buy</button>
+<div class="right">
+<p>/Sphere</p>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/300?3">
-<h3>Laptop</h3>
-<button>Buy</button>
+<div class="center" onclick="openCard()">
+<img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png">
+<br>
+<button class="join">Join the club</button>
 </div>
 
-<div class="card">
-<img src="https://picsum.photos/300?4">
-<h3>Camera</h3>
-<button>Buy</button>
+<div class="members">
+Limited to<br>200 members
+</div>
+
+<div class="extra">
+<p style="color:white">Welcome to Smart Sphere 🚀</p>
 </div>
 
 </div>
+
+<script>
+
+function openCard(){
+document.getElementById("card").classList.toggle("active");
+}
+
+</script>
 
 </body>
 </html>
