@@ -6,27 +6,47 @@
 <style>
 
 body{
-background:#0b0f14;
+margin:0;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+background:#020617;
 font-family:Arial;
+overflow:hidden;
+color:white;
+}
+
+/* animated background particles */
+
+body::before{
+content:"";
+position:absolute;
+width:300%;
+height:300%;
+background:radial-gradient(circle,rgba(0,255,255,0.15),transparent 60%);
+animation:bgrotate 12s linear infinite;
+}
+
+@keyframes bgrotate{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
 }
 
 .card{
-width:340px;
-height:220px;
-background:linear-gradient(90deg,#0f6d6d,#e8e8e8);
-border-radius:20px;
+width:350px;
+height:230px;
+background:linear-gradient(90deg,#0f6d6d,#e5e5e5);
+border-radius:25px;
 position:relative;
-overflow:hidden;
 padding:20px;
-transition:0.5s;
+overflow:hidden;
+transition:0.7s;
+box-shadow:0 0 50px rgba(0,255,255,0.4);
 }
 
 .card.active{
-height:380px;
+height:440px;
 }
 
 .left{
@@ -37,16 +57,18 @@ color:white;
 }
 
 .left h1{
+font-size:42px;
 margin:0;
-font-size:40px;
 }
 
 .right{
 position:absolute;
 right:20px;
 top:20px;
-color:#004646;
+color:#003a3a;
 }
+
+/* brain center */
 
 .center{
 position:absolute;
@@ -59,26 +81,78 @@ cursor:pointer;
 
 .center img{
 width:90px;
-transition:0.5s;
-filter:drop-shadow(0 0 15px cyan);
+filter:drop-shadow(0 0 25px cyan);
+animation:pulse 2s infinite;
+transition:0.6s;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.2)}
+100%{transform:scale(1)}
 }
 
 .card.active .center img{
-transform:scale(1.4) rotate(360deg);
+transform:scale(1.6) rotate(720deg);
 }
 
+/* rotating rings */
+
+.ring{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:170px;
+height:170px;
+border-radius:50%;
+border:4px solid cyan;
+box-shadow:0 0 40px cyan;
+animation:ringSpin 6s linear infinite;
+}
+
+.ring2{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:210px;
+height:210px;
+border-radius:50%;
+border:2px dashed white;
+animation:ringSpin2 8s linear infinite;
+}
+
+@keyframes ringSpin{
+0%{transform:translate(-50%,-50%) rotate(0)}
+100%{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+@keyframes ringSpin2{
+0%{transform:translate(-50%,-50%) rotate(360deg)}
+100%{transform:translate(-50%,-50%) rotate(0)}
+}
+
+/* join button */
+
 .join{
-margin-top:10px;
-padding:8px 15px;
+margin-top:12px;
+padding:10px 18px;
 border:none;
 background:black;
 color:white;
-border-radius:10px;
+border-radius:12px;
 display:none;
 }
 
 .card.active .join{
 display:inline-block;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
 }
 
 .members{
@@ -86,20 +160,23 @@ position:absolute;
 right:20px;
 bottom:20px;
 background:white;
-color:#004646;
+color:#003b3b;
 padding:10px;
-border-radius:12px;
+border-radius:14px;
 font-weight:bold;
 }
 
+/* extra content */
+
 .extra{
-margin-top:200px;
+margin-top:220px;
 text-align:center;
 display:none;
 }
 
 .card.active .extra{
 display:block;
+animation:fade 1s;
 }
 
 </style>
@@ -120,6 +197,9 @@ display:block;
 <p>/Sphere</p>
 </div>
 
+<div class="ring"></div>
+<div class="ring2"></div>
+
 <div class="center" onclick="openCard()">
 <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png">
 <br>
@@ -127,11 +207,12 @@ display:block;
 </div>
 
 <div class="members">
-Limited to<br>200 members
+Limited to <br> 200 members
 </div>
 
 <div class="extra">
-<p style="color:white">Welcome to Smart Sphere 🚀</p>
+<h2>Welcome to Smart Sphere 🚀</h2>
+<p>Futuristic tech community with AI thinkers.</p>
 </div>
 
 </div>
@@ -146,3 +227,4 @@ document.getElementById("card").classList.toggle("active");
 
 </body>
 </html>
+
